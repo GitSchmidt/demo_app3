@@ -1,0 +1,56 @@
+1 rails new demo_app
+
+2 take good gemfile
+
+3 bundle install --without production
+
+4a git init
+
+4b .gitignore
+
+4c git add .
+4d git commit -m "initial commit"
+
+__following lines fix some first-time problem with git:
+$ git config branch.master.remote origin
+$ git config branch.master.merge refs/heads/master
+
+(__removing bad remote:
+git remote rm origin)
+
+git remote add origin git@github.com:GitSchmidt/demo_app3.git
+git push -u origin master
+
+rails generate scaffold User name:string email:string
+(no space between : and string, otherwise there will be a name:string and string:string or something silly like that)
+
+bundle exec rake db:migrate
+
+added User1 and User2
+
+rails generate scaffold Micropost content:string user_id:integer
+
+bundle exec rake db:migrate
+
+added 3 Microposts - 2 for id=1, 1 for id=2, hoping those match with the users above
+
+in C:\Sites\demo_app3\app\models\micropost.rb:
+  belongs_to :user
+  validates :content, :length => { :maximum => 140 }
+
+  
+in C:\Sites\demo_app3\app\models\user.rb
+ Added line (has_many :microposts )
+ 
+ dann:
+ 
+ rails console
+ $first_user = User.first
+ $ first_user.microposts
+ 
+ -> this works without db:migrate (need to study what exactly is going on there)
+ -> did not work previously when I messed up scaffolding and tried to correct columns and data types. Done from scratch works fine.
+ 
+ leave console with "exit"
+ 
+ 
