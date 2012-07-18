@@ -52,5 +52,21 @@ in C:\Sites\demo_app3\app\models\user.rb
  -> did not work previously when I messed up scaffolding and tried to correct columns and data types. Done from scratch works fine.
  
  leave console with "exit"
+ ********
+ git add . 
+ git commit -m "finish..."
  
+ git push
+
+** heroku magic:
+heroku create --stack cedar
+git push heroku master
+
+"error occured while installing sqlite3 (1.3.6)...
+tried to comment out sqlite3 for heroku
+- didnt work
+checked git status: ah, my changes were not commited, so it tried to install sqlite on heroku which is not supported
+
+
+heroku run rake db:migrate
  
